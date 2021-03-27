@@ -34,7 +34,7 @@ class EasyApplyLinkedin:
         login_pass.clear()
         login_pass.send_keys(self.password)
         login_pass.send_keys(Keys.RETURN)
-    
+
     def job_search(self):
         """This function goes to the 'Jobs' section a looks for all the jobs that matches the keywords and location"""
 
@@ -119,7 +119,7 @@ class EasyApplyLinkedin:
         print('You are applying to the position of: ', job_add.text)
         job_add.click()
         time.sleep(2)
-        
+
         # click on the easy apply button, skip if already applied to the position
         try:
             in_apply = self.driver.find_element_by_xpath("//button[@data-control-name='jobdetails_topcard_inapply']")
@@ -133,7 +133,7 @@ class EasyApplyLinkedin:
         try:
             submit = self.driver.find_element_by_xpath("//button[@data-control-name='submit_unify']")
             submit.send_keys(Keys.RETURN)
-        
+
         # ... if not available, discard application and go to next
         except NoSuchElementException:
             print('Not direct application, going to next...')
@@ -151,7 +151,7 @@ class EasyApplyLinkedin:
 
     def close_session(self):
         """This function closes the actual session"""
-        
+
         print('End of the session, see you later!')
         self.driver.close()
 
@@ -161,7 +161,9 @@ class EasyApplyLinkedin:
         self.driver.maximize_window()
         self.login_linkedin()
         time.sleep(5)
+        
         self.job_search()
+
         time.sleep(5)
         self.filter()
         time.sleep(2)
