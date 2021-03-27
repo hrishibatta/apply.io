@@ -9,6 +9,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 import time
 import re
 import json
+import sys
 
 class EasyApplyLinkedin:
 
@@ -65,15 +66,32 @@ class EasyApplyLinkedin:
 
     def applyToJobs(self):
         """This function applies to the jobs"""
-        QuickApply = self.driver.find_element_by_xpath("//button[@class='jobs-apply-button artdeco-button artdeco-button--3 artdeco-button--primary ember-view']")
-        QuickApply.click()
 
+        pane = self.driver.find_element_by_class_name("jobs-search-results")
+
+        # start from your target element, here for example, "header"
+        all_li = pane.find_elements_by_tag_name("li")
+        for li in all_li:
+            ### Loop through the job postings and press the whitelink, changing current job view
+            print(li)
+
+        sys.exit(1)
+
+
+        self.quickApplyButton()
         time.sleep(5)
         self.nextButton()
         time.sleep(5)
         self.reviewButton()
         time.sleep(5)
         self.submitApplication()
+
+    def quickApplyButton(self):
+        try:
+            QuickApply = self.driver.find_element_by_xpath("//button[@class='jobs-apply-button artdeco-button artdeco-button--3 artdeco-button--primary ember-view']")
+            QuickApply.click()
+        except:
+            pass
 
     def nextButton(self):
         try:
@@ -93,6 +111,10 @@ class EasyApplyLinkedin:
         try:
             submitApplication = self.driver.find_element_by_xpath("//button[@aria-label='Submit application' and @class='artdeco-button artdeco-button--2 artdeco-button--primary ember-view']")
             submitApplication.click()
+
+            exit = self.driver.find_element_by_xpath("//button[@aria-label='Dismiss' and @class='artdeco-modal__dismiss artdeco-button artdeco-button--circle artdeco-button--muted artdeco-button--2 artdeco-button--tertiary ember-view']")
+            exit.click()
+
         except:
             pass
 
