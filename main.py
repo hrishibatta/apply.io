@@ -55,14 +55,10 @@ class EasyApplyLinkedin:
         """This function filters all the job results by 'Easy Apply'"""
 
         # select all filters, click on Easy Apply and apply the filter
-        all_filters_button = self.driver.find_element_by_xpath("//button[@data-control-name='all_filters']")
-        all_filters_button.click()
-        time.sleep(1)
-        easy_apply_button = self.driver.find_element_by_xpath("//label[@for='f_LF-f_AL']")
+
+        easy_apply_button = self.driver.find_element_by_class_name("artdeco-pill artdeco-pill--slate artdeco-pill--2 artdeco-pill--choice ember-view search-reusables__filter-pill-button")
         easy_apply_button.click()
-        time.sleep(1)
-        apply_filter_button = self.driver.find_element_by_xpath("//button[@data-control-name='all_filters_apply']")
-        apply_filter_button.click()
+
 
     def find_offers(self):
         """This function finds all the offers through all the pages result of the search and filter"""
