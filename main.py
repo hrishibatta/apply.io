@@ -1,3 +1,4 @@
+  
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
@@ -57,34 +58,38 @@ class EasyApplyLinkedin:
 
         # select all filters, click on Easy Apply and apply the filter
         time.sleep(2)
-
-        move = self.driver.find_element_by_xpath("(//button[@class='peek-carousel-controls__button'])[2]")
-        move.click()
-
+        
+        try:
+            move = self.driver.find_element_by_xpath("(//button[@class='peek-carousel-controls__button'])[2]")
+            move.click()
+        except: 
+            pass
+    
         easy_apply_button = self.driver.find_element_by_xpath("//button[@aria-label='Easy Apply filter.' and @class='artdeco-pill artdeco-pill--slate artdeco-pill--2 artdeco-pill--choice ember-view search-reusables__filter-pill-button']")
         easy_apply_button.click()
 
     def applyToJobs(self):
         """This function applies to the jobs"""
 
-        pane = self.driver.find_element_by_class_name("jobs-search-results")
+        pane = self.driver.find_element_by_class_name("jobs-search-results__list")
 
         # start from your target element, here for example, "header"
         all_li = pane.find_elements_by_tag_name("li")
         for li in all_li:
             ### Loop through the job postings and press the whitelink, changing current job view
-            print(li)
+            li.click()
+            self.quickApplyButton()
+            time.sleep(5)
+            self.nextButton()
+            time.sleep(5)
+            self.reviewButton()
+            time.sleep(5)
+            self.submitApplication()
 
-        sys.exit(1)
 
 
-        self.quickApplyButton()
-        time.sleep(5)
-        self.nextButton()
-        time.sleep(5)
-        self.reviewButton()
-        time.sleep(5)
-        self.submitApplication()
+
+        
 
     def quickApplyButton(self):
         try:
@@ -95,8 +100,13 @@ class EasyApplyLinkedin:
 
     def nextButton(self):
         try:
-            nextButton = self.driver.find_element_by_xpath("//button[@aria-label='Continue to next step' and @class='artdeco-button artdeco-button--2 artdeco-button--primary ember-view']")
-            nextButton.click()
+            i = 0
+            while(True):
+                nextButton = self.driver.find_element_by_xpath("//button[@aria-label='Continue to next step' and @class='artdeco-button artdeco-button--2 artdeco-button--primary ember-view']")
+                nextButton.click()
+                i += 1
+                if i > 5:
+                    break
         except:
             pass
 
@@ -112,7 +122,8 @@ class EasyApplyLinkedin:
             submitApplication = self.driver.find_element_by_xpath("//button[@aria-label='Submit application' and @class='artdeco-button artdeco-button--2 artdeco-button--primary ember-view']")
             submitApplication.click()
 
-            exit = self.driver.find_element_by_xpath("//button[@aria-label='Dismiss' and @class='artdeco-modal__dismiss artdeco-button artdeco-button--circle artdeco-button--muted artdeco-button--2 artdeco-button--tertiary ember-view']")
+            time.sleep(2)
+            exit = self.driver.find_element_by_xpath("//button[@aria-label='Dismiss']")
             exit.click()
 
         except:
