@@ -55,8 +55,12 @@ class EasyApplyLinkedin:
         """This function filters all the job results by 'Easy Apply'"""
 
         # select all filters, click on Easy Apply and apply the filter
+        time.sleep(2)
 
-        easy_apply_button = self.driver.find_element_by_class_name("artdeco-pill artdeco-pill--slate artdeco-pill--2 artdeco-pill--choice ember-view search-reusables__filter-pill-button")
+        move = self.driver.find_element_by_xpath("(//button[@class='peek-carousel-controls__button'])[2]")
+        move.click()
+
+        easy_apply_button = self.driver.find_element_by_xpath("//button[@aria-label='Easy Apply filter.' and @class='artdeco-pill artdeco-pill--slate artdeco-pill--2 artdeco-pill--choice ember-view search-reusables__filter-pill-button']")
         easy_apply_button.click()
 
 
