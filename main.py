@@ -43,10 +43,10 @@ class EasyApplyLinkedin:
         jobs_link.click()
 
         # search based on keywords and location and hit enter
-        search_keywords = self.driver.find_element_by_css_selector(".jobs-search-box__text-input[aria-label='Search jobs']")
+        search_keywords = self.driver.find_element_by_css_selector(".jobs-search-box__text-input[aria-label='Search by title, skill, or company']")
         search_keywords.clear()
         search_keywords.send_keys(self.keywords)
-        search_location = self.driver.find_element_by_css_selector(".jobs-search-box__text-input[aria-label='Search location']")
+        search_location = self.driver.find_element_by_css_selector(".jobs-search-box__text-input[aria-label='City, state, or zip code']")
         search_location.clear()
         search_location.send_keys(self.location)
         search_location.send_keys(Keys.RETURN)
