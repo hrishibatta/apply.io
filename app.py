@@ -7,6 +7,7 @@ def index():
 	return render_template('index.html')
 	#'<h1>Hello World, {}.</h1>'.format(name)
 
-@app.route('/<name>/')
-def redirect(name):
-	return '<h1>Applied for jobs, {}!!!.</h1>'.format(name)
+@app.route('/Applied/', methods=["POST"])
+def redirect():
+	name = request.form['name']
+	return '<h1>Applied for jobs, {}!!!</h1>'.format(name)
