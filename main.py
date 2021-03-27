@@ -5,6 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException, ElementClickInterceptedException, NoSuchElementException
 from selenium.webdriver.common.action_chains import ActionChains
+from webdriver_manager.chrome import ChromeDriverManager
 import time
 import re
 import json
@@ -18,7 +19,8 @@ class EasyApplyLinkedin:
         self.password = data['password']
         self.keywords = data['keywords']
         self.location = data['location']
-        self.driver = webdriver.Chrome(data['driver_path'])
+
+        self.driver = webdriver.Chrome(ChromeDriverManager().install())
 
     def login_linkedin(self):
         """This function logs into your personal LinkedIn profile"""
@@ -161,7 +163,7 @@ class EasyApplyLinkedin:
         self.driver.maximize_window()
         self.login_linkedin()
         time.sleep(5)
-        
+
         self.job_search()
 
         time.sleep(5)
