@@ -5,6 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException, ElementClickInterceptedException, NoSuchElementException
 from selenium.webdriver.common.action_chains import ActionChains
+from webdriver_manager.chrome import ChromeDriverManager
 import time
 import re
 import json
@@ -18,7 +19,8 @@ class EasyApplyLinkedin:
         self.password = data['password']
         self.keywords = data['keywords']
         self.location = data['location']
-        self.driver = webdriver.Chrome(data['driver_path'])
+
+        self.driver = webdriver.Chrome(ChromeDriverManager().install())
 
     def login_linkedin(self):
         """This function logs into your personal LinkedIn profile"""
@@ -43,10 +45,10 @@ class EasyApplyLinkedin:
         jobs_link.click()
 
         # search based on keywords and location and hit enter
-        search_keywords = self.driver.find_element_by_css_selector(".jobs-search-box__text-input[aria-label='Search jobs']")
+        search_keywords = self.driver.find_element_by_css_selector(".jobs-search-box__text-input[aria-label='Search by title, skill, or company']")
         search_keywords.clear()
         search_keywords.send_keys(self.keywords)
-        search_location = self.driver.find_element_by_css_selector(".jobs-search-box__text-input[aria-label='Search location']")
+        search_location = self.driver.find_element_by_css_selector(".jobs-search-box__text-input[aria-label='City, state, or zip code']")
         search_location.clear()
         search_location.send_keys(self.location)
         search_location.send_keys(Keys.RETURN)
@@ -161,7 +163,7 @@ class EasyApplyLinkedin:
         self.driver.maximize_window()
         self.login_linkedin()
         time.sleep(5)
-        
+
         self.job_search()
 
         time.sleep(5)

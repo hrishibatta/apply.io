@@ -1,7 +1,8 @@
 {
-    "email" : "XXXXXX",
-    "password" : "XXXXXX",
-    "keywords" : "XXXXXX",
-    "location" : "XXXXX",
-    "driver_path" : "XXXX"
+    "email" : "dylansnyderj@hotmail.com",
+    "password" : "Harvord3.14159",
+    "keywords" : "Software",
+    "location" : "Seattle",
+    "driver_path" : "/Users/dylan/Desktop/DiamondHacks/apply.io/chromedriver"
+
 }
