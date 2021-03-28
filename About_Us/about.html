@@ -1,4 +1,8 @@
 <div class="about-section">
+    <div id="logo">
+        <img src="{{ url_for('static', filename='Images/apply.io_logo.png') }}" width="200" height="200">
+    </div>
+
     <h1>About Us</h1>
     <p>Some text about who we are and what we do.</p>
     <p>Resize the browser window to see that this page is responsive by the way.</p>
@@ -36,6 +40,16 @@
         text-align: center;
         background-color: #1c87c9;
         color: white;
+    }
+    
+    #logo {
+        position: fixed;
+        top: 0;
+        left: 0;
+        box-shadow: 0 2px 5px #000000;
+        background: white;
+        margin: 5px;
+        border-radius: 5px;
     }
     
     .container {
