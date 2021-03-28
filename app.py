@@ -25,5 +25,5 @@ def redirect():
 	bot = EasyApplyLinkedin(data)
 	t1 = threading.Thread(target=bot.apply)
 	t1.start()
-	return '<h1>Applied for jobs, {}!!!</h1>'.format(name)
+	return render_template('Loading/loading.html', data={'name': name})
 	
