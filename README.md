@@ -31,3 +31,14 @@ set FLASK_APP=app.py
 
 flask run
 ```
+## Results
+The program automatically applies to jobs on LinkedIn based on the user's credentials and preferences.
+
+
+<img src="assets/unknown1.png"  />
+
+
+<img src="assets/unknown2.png"  />
+
+
+<img src="assets/unknown3.png"  />
