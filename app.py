@@ -27,3 +27,9 @@ def redirect():
 	t1.start()
 	return render_template('Loading/loading.html', data={'name': name})
 	
+@app.route('/JSONOutput')
+def output():
+	jsonOutput = open("dataOutput.json", "r")
+	jsonOutputRead = jsonOutput.read()
+	jsonOutput.close()
+	return jsonOutputRead;
