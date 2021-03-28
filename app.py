@@ -17,6 +17,8 @@ def redirect():
 	password = request.form['password']
 	location = request.form['location']
 	keywords = request.form['keywords']
+	with open('dataOutput.json', 'w') as f:
+		f.write('')
 	data = {'email': email, 'password': password, 'keywords': keywords, 'location': location}
 	with open('data.json', 'w') as outfile:
 		json.dump(data, outfile)

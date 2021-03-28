@@ -97,7 +97,7 @@
     </div>
     <h1>Congratulations {{data.name}}! You are now applying for jobs.</h1>
     <div class="text-center">
-        <button class="btn btn-light" id="appliedBtn" style="margin: 30px;" data-toggle="modal" data-target="#exampleModal"><h2>Applied Jobs</h2></button>
+        <button class="btn btn-light" id="appliedBtn" style="margin: 30px;" data-toggle="modal" data-target="#exampleModal" onclick="onModalClick()"><h2>Applied Jobs</h2></button>
     </div>
 
     <!-- Modal -->
@@ -118,10 +118,13 @@
                               <td>Company</td>
                           </tr>
                       </thead>
+                      <tbody>
                       <script type="text/javascript">
+                        function onModalClick() {
                         var body = document.getElementById("tablediv");
                         var table = document.getElementsByTagName("table")[0];
-                        var tblBody = document.createElement('tbody');
+                        var tblBody = document.getElementsByTagName('tbody')[0];
+                        tblBody.innerHTML = '';
                       if (window.XMLHttpRequest)
     {// code for IE7+, Firefox, Chrome, Opera, Safari
         xmlhttp=new XMLHttpRequest();
@@ -157,8 +160,10 @@
     }
     xmlhttp.open("GET", "http://localhost:5000/JSONOutput", false );
     xmlhttp.send();    
+}
 
                       </script>
+                  </tbody>
                   </table>
       </div>
       <div class="modal-footer">
