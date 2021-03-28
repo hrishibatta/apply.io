@@ -1,7 +1,9 @@
 [![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
 
-<img src="templates/Images/apply.io_logo.png" width="100" height="100" /># Apply.io
+<img src="templates/Images/apply.io_logo.png" width="150" height="150" />
+
+# Apply.io
 LinkedIn Automated Application
 
 
