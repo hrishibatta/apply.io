@@ -1,9 +1,9 @@
 [![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
-# Apply.io
+
+<img src="templates/Images/apply.io_logo.png" width="100" height="100" /># Apply.io
 LinkedIn Automated Application
 
-<img src="templates/Images/apply.io_logo.png" />
 
 ## Getting started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
