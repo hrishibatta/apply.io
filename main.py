@@ -79,33 +79,58 @@ class EasyApplyLinkedin:
         all_li = pane.find_elements_by_tag_name("li")
 
         for li in all_li:
-            ### Loop through the job postings and press the whitelink, changing current job view
-            li.click()
+            print(len(li.text))
+            if len(li.text) > 60:
+
+                ### Loop through the job postings and press the whitelink, changing current job view
+                try:
+                    li.click()
+                except:
+                    try:
+                        while (True):
+                            noti = self.driver.find_element_by_xpath("//button[@class='artdeco-toast-item__dismiss artdeco-button artdeco-button--circle artdeco-button--muted artdeco-button--1 artdeco-button--tertiary ember-view']")
+                            noti.click()
+                            time.sleep(.5)
+                    except:
+                        time.sleep(.5)
+                        li.click()
+
+                print("moved")
+
+                time.sleep(1)
+                self.quickApplyButton()
+                print("quick APplied")
+                time.sleep(2)
+
+                if self.checkEasy():
+                    self.nextButton()
+                    time.sleep(1)
+
+                    if self.checkEasy():
+                        self.reviewButton()
+                        time.sleep(1)
 
 
-            #self.quickApplyButton()
-            #time.sleep(5)
-            #self.nextButton()
-            #time.sleep(5)
-            #self.reviewButton()
-            #time.sleep(5)
-            #self.submitApplication()
+                        self.submitApplication()
+                        self.jobInfo()
+                        print(self.jsonOutput)
+
+                    else:
+
+                        self.abort()
 
 
 
-            #Obtain Basic Job Info
-            try:
-                jobtitle = self.driver.find_element_by_class_name("jobs-details-top-card__job-title").text
+                else:
+                    self.abort()
 
-                company = self.driver.find_element_by_class_name("jobs-details-top-card__company-url").text
 
-                if jobtitle not in self.jsonOutput or self.jsonOutput[jobtitle] != company:
 
-                    self.jsonOutput[jobtitle] = company
-                    self.applicationNumber += 1
 
-            except:
-                pass
+
+
+
+
 
 
         with open('dataOutput.json', 'w') as outfile:
@@ -113,6 +138,40 @@ class EasyApplyLinkedin:
         print(self.applicationNumber)
 
 
+
+    def jobInfo(self):
+        try:
+            jobtitle = self.driver.find_element_by_class_name("jobs-details-top-card__job-title").text
+
+            company = self.driver.find_element_by_class_name("jobs-details-top-card__company-url").text
+
+            if jobtitle not in self.jsonOutput or self.jsonOutput[jobtitle] != company:
+
+                self.jsonOutput[jobtitle] = company
+                self.applicationNumber += 1
+
+        except:
+            pass
+
+    def abort(self):
+        cancel = self.driver.find_element_by_xpath("//button[@aria-label='Dismiss' and @class='artdeco-modal__dismiss artdeco-button artdeco-button--circle artdeco-button--muted artdeco-button--2 artdeco-button--tertiary ember-view']")
+        cancel.click()
+
+        time.sleep(1)
+        dismiss = self.driver.find_element_by_xpath("//button[@class='artdeco-modal__confirm-dialog-btn artdeco-button artdeco-button--2 artdeco-button--primary ember-view']")
+        dismiss.click()
+
+
+    def checkEasy(self):
+        try:
+            #QuickApply = self.driver.find_element_by_xpath("//input[@class='ember-text-field ember-view fb-single-line-text__input']")
+            type = self.driver.find_element_by_xpath("//h3[@class='t-16 t-bold']").text
+
+            if type == "Additional Questions" or type == "Home address" or type == "Additional" or type == "Voluntary self identification":
+                return False
+            return True
+        except:
+            return True
 
 
     def quickApplyButton(self):
