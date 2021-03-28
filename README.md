@@ -6,4 +6,4 @@ These instructions will get you a copy of the project up and running on your loc
 
 ## Prerequisites
 Install selenium. I used pip to install the selenium package.
-pip install selenium
+`pip install selenium`
