@@ -10,6 +10,10 @@ These instructions will get you a copy of the project up and running on your loc
 pip install selenium
 ```
 2. Install flask
-  ``pip install flask``
+```bash
+pip install flask
+```
 3. Install web_driver
-   `pip install web_driver`
+```bash
+pip install web_driver
+```
