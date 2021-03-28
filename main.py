@@ -70,21 +70,33 @@ class EasyApplyLinkedin:
 
     def applyToJobs(self):
         """This function applies to the jobs"""
-
+ 
         pane = self.driver.find_element_by_class_name("jobs-search-results__list")
 
         # start from your target element, here for example, "header"
         all_li = pane.find_elements_by_tag_name("li")
+        print("Job - Company")
         for li in all_li:
             ### Loop through the job postings and press the whitelink, changing current job view
             li.click()
-            self.quickApplyButton()
-            time.sleep(5)
-            self.nextButton()
-            time.sleep(5)
-            self.reviewButton()
-            time.sleep(5)
-            self.submitApplication()
+            #Obtain Basic Job Info
+            try:
+                jobtitle = self.driver.find_element_by_class_name("jobs-details-top-card__job-title").text
+
+                company = self.driver.find_element_by_class_name("jobs-details-top-card__company-url").text
+                print(jobtitle + " - " + company)
+            except:
+                pass
+
+
+
+            # self.quickApplyButton()
+            # time.sleep(5)
+            # self.nextButton()
+            # time.sleep(5)
+            # self.reviewButton()
+            # time.sleep(5)
+            # self.submitApplication()
 
 
 
