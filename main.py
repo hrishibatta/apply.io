@@ -1,4 +1,3 @@
-  
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
@@ -23,6 +22,9 @@ class EasyApplyLinkedin:
         self.location = data['location']
 
         self.driver = webdriver.Chrome(ChromeDriverManager().install())
+
+        self.jsonOutput = {}
+        self.applicationNumber = 0
 
     def login_linkedin(self):
         """This function logs into your personal LinkedIn profile"""
@@ -58,50 +60,60 @@ class EasyApplyLinkedin:
 
         # select all filters, click on Easy Apply and apply the filter
         time.sleep(2)
-        
+
         try:
             move = self.driver.find_element_by_xpath("(//button[@class='peek-carousel-controls__button'])[2]")
             move.click()
-        except: 
+        except:
             pass
-    
+
         easy_apply_button = self.driver.find_element_by_xpath("//button[@aria-label='Easy Apply filter.' and @class='artdeco-pill artdeco-pill--slate artdeco-pill--2 artdeco-pill--choice ember-view search-reusables__filter-pill-button']")
         easy_apply_button.click()
 
     def applyToJobs(self):
         """This function applies to the jobs"""
- 
+
         pane = self.driver.find_element_by_class_name("jobs-search-results__list")
 
         # start from your target element, here for example, "header"
         all_li = pane.find_elements_by_tag_name("li")
-        print("Job - Company")
+
         for li in all_li:
             ### Loop through the job postings and press the whitelink, changing current job view
             li.click()
+
+
+            #self.quickApplyButton()
+            #time.sleep(5)
+            #self.nextButton()
+            #time.sleep(5)
+            #self.reviewButton()
+            #time.sleep(5)
+            #self.submitApplication()
+
+
+
             #Obtain Basic Job Info
             try:
                 jobtitle = self.driver.find_element_by_class_name("jobs-details-top-card__job-title").text
 
                 company = self.driver.find_element_by_class_name("jobs-details-top-card__company-url").text
-                print(jobtitle + " - " + company)
+
+                if jobtitle not in self.jsonOutput or self.jsonOutput[jobtitle] != company:
+
+                    self.jsonOutput[jobtitle] = company
+                    self.applicationNumber += 1
+
             except:
                 pass
 
 
-
-            # self.quickApplyButton()
-            # time.sleep(5)
-            # self.nextButton()
-            # time.sleep(5)
-            # self.reviewButton()
-            # time.sleep(5)
-            # self.submitApplication()
+        with open('dataOutput.json', 'w') as outfile:
+            json.dump(self.jsonOutput, outfile)
+        print(self.applicationNumber)
 
 
 
-
-        
 
     def quickApplyButton(self):
         try:
