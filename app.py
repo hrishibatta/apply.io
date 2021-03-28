@@ -3,11 +3,11 @@ from main import EasyApplyLinkedin
 import json
 import threading
 
-app =  Flask(__name__)
+app =  Flask(__name__, static_folder='templates/')
 
 @app.route('/')
 def index():
-	return render_template('index.html')
+	return render_template('info.html')
 	#'<h1>Hello World, {}.</h1>'.format(name)
 
 @app.route('/Applied/', methods=["POST"])
