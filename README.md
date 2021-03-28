@@ -3,6 +3,8 @@
 # Apply.io
 LinkedIn Automated Application
 
+<img src="gifVid.gif" width="200" height="400" />
+
 ## Getting started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
