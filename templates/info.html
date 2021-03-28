@@ -38,7 +38,6 @@
         select {
             background-color: #fff;
             border: 1px solid #ccc;
-            line-height: 30px;
             display: inline-block;
             font-size: 14px;
             color: #666;
@@ -48,9 +47,7 @@
             margin: 13px 0 0 -5px;
             padding-left: 10px;
             border-radius: 0 5px 5px 0;
-            border: solid 1px #cbc9c9;
             box-shadow: 1px 2px 5px rgba(0, 0, 0, .09);
-            background: #fff;
         }
         
         p {
@@ -163,9 +160,10 @@
             <input type="text" name="name" id="name" placeholder="Name" required />
             <label id="icon" for="name"><i class="fas fa-unlock-alt"></i></label>
             <input type="password" name="password" id="password" placeholder="Password" required />
-            <label id="icon" for="name"><i class="fa fa-sort-numeric-asc"></i></label>
-            <div class="data-list-input" style="width:190px;">
-                <select class="data-list-input" style="width:190px;">
+
+            <div class="data-list-input" style="width:50px;">
+                <label id="icon" for="name"><i class="fa fa-sort-numeric-asc"></i></label>
+                <select class="data-list-input" style="width:300px;">
                     <option value="">Select Number of Job Applications</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
