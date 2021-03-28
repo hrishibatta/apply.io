@@ -49,9 +49,9 @@ class EasyApplyLinkedin:
 
         if self.location:
             location = self.location.replace(" ","%20")+"%2C%20"
-            url = base+keywords+location+"&start=30"
+            url = base+keywords+location
         else:
-            url = base + keywords + location + "&start=30"
+            url = base + keywords + location
 
         self.driver.get(url)
 
@@ -95,11 +95,11 @@ class EasyApplyLinkedin:
                         time.sleep(.5)
                         li.click()
 
-                print("moved")
+                # print("moved")
 
                 time.sleep(1)
                 self.quickApplyButton()
-                print("quick APplied")
+                # print("quick APplied")
                 time.sleep(2)
 
                 if self.checkEasy():
@@ -113,7 +113,10 @@ class EasyApplyLinkedin:
 
                         self.submitApplication()
                         self.jobInfo()
-                        print(self.jsonOutput)
+                        # print(self.jsonOutput)
+                        with open('dataOutput.json', 'w') as outfile:
+                            json.dump(self.jsonOutput, outfile)
+                        print(self.applicationNumber)
 
                     else:
 
@@ -133,9 +136,7 @@ class EasyApplyLinkedin:
 
 
 
-        with open('dataOutput.json', 'w') as outfile:
-            json.dump(self.jsonOutput, outfile)
-        print(self.applicationNumber)
+        
 
 
 
